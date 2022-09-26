@@ -1,0 +1,68 @@
+/*-------JS Alert and Confirm-------*/
+
+.alertjs-box {
+    position: fixed;
+    z-index: 43;
+    background-color: #ECFDF5;
+    color: #1E293B;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(.8);
+    padding: 0 5px;
+    border-radius: 5px;
+    width: 600px;
+    max-width: 90%;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: all .3s ease;
+    max-height: 90%;
+    box-shadow: 0 10px 15px -10px #1E293B;
+}
+
+.alertjs-box.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.alertjs-box > div {
+    padding: 20px;
+}
+
+.alertjs-box .alertjs-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.alertjs-box .alertjs-buttons .alertjs-button {
+    text-transform: uppercase;
+    color: #059669;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.alertjs-box .alertjs-buttons .alertjs-button.alertjs-button-ok {
+    margin-left: 35px;
+}
+
+
+.alertjs-back {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 42;
+    opacity: 1;
+    transition: opacity .3s ease;
+}
+
+.alertjs-back.animate {
+    opacity: 0;
+}
+
+.alertjs-back.active {
+    display: block;
+}

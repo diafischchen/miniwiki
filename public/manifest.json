@@ -1,0 +1,35 @@
+{
+    "name": "Wiki",
+    "short_name": "Wiki",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#475569",
+    "theme_color": "#475569",
+    "description": "MK Wiki",
+    "icons": [
+        {
+            "src": "img/favicon.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        },
+        {
+            "src": "img/favicon192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any"
+        },
+        {
+            "src": "img/maskable.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        },
+        {
+            "src": "img/maskable192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "maskable"
+        }
+    ]
+}

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Router Documentation Deutsch</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        h1, h2, h3 {
+            background-color: lightblue;
+            padding: 5px;
+        }
+
+        h2, h3 {
+            margin-top: 100px;
+        }
+
+        p {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, td, th {
+            border: 1px solid #333;
+            vertical-align: top;
+            padding: 5px;
+        }
+
+        table, td {
+            background-color: #eee;
+        }
+
+        th {
+            background-color: lightblue;
+        }
+
+        code {
+            background: #eee;
+            padding: 5px;
+        }
+
+        pre {
+            background: #eee;
+            border-left: 3px solid lightgreen;
+            margin: 5px;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>PHP Router</h1>
+    <small>German Documentation</small><br>
+    <small>Latest version: 1.1</small>
+    
+
+    <h1>Inhalt</h1>
+    <ul>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#namespace">Namespace</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#htaccess">.htaccess</a></li>
+        <li><a href="#add">Routen hinzufügen</a></li>
+        <li><a href="#base">Basis Route</a></li>
+        <li><a href="#error">Error Routen</a></li>
+        <li><a href="#parameter">Routen Parameter</a></li>
+        <li><a href="#auth">Auth Routen</a></li>
+        <li><a href="#methods">Alle Methoden</a></li>
+    </ul>
+
+
+    <h2 id="requirements">Requirements</h2>
+    <p>PHP 7.4+</p>
+    <small>Entwickelt und getestet in PHP 7.4 sollte aber auch in PHP 7 aufwärts funktionieren. Kann nichts versichern</small>
+    <p>Apache Rewrite Engine wird empfohlen aber nicht vorrausgesetzt.</p>
+
+
+    <h2 id="namespace">Namespace</h2>
+    <p>Die Klassen befinden sich im Namespace <code>Moritz\Route</code></p>
+
+
+    <h2 id="installation">Installation</h2>
+    <pre>&lt;?php
+
+use Moritz\Route\Route;
+require 'path/to/autoload.php;</pre>
+
+    
+    <h2 id="htaccess">.htaccess</h2>
+    <p>
+        Damit unterschiedliche Anfragen an ein Skript gesendet werden, muss eine .htaccess Datei mit ein paar RewriteRules angelegt werden.
+        In dem Fall dieses Beispiels werden alle Anfragen an die, im selben Ordner des Webservers befindende, index.php gesendet.<br>
+        Aus <code>https://example.com/mysite/user</code> wird wenn sich die .htaccess Date im Root befindet <code>https://example.com/index.php?url=mysite/user</code>.
+    </p>
+
+    <pre>RewriteEngine On
+
+# Redirect Trailing Slashes If Not A Folder
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [L,R]
+
+# Redirect all requests to the index.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+RewriteRule ^\.git – [L,R=404]</pre>
+
+    <p>Wie du deine Anfragen umleitest im im Grunde egal. Hauptsache alle Anfragen gehen am Ende auf ein und dasselbe Skript.</p>
+
+
+    <h2 id="add">Routen hinzufügen</h2>
+    <p>Methode: <code>Route::add($uri, $function, $method = 'get');</code></p>
+    <pre>Route::add('/', function() {
+    echo 'Homepage';
+});
+
+Route::add('/user', function() {
+    echo 'User Page';
+}, 'get');
+
+Route::add('/post/edit', function() {
+    echo 'Edit your Post';
+}, 'post');</pre>
+
+    <p>Statt einer Funktion kann auch ein Klassenname als String mitgegeben werden. Es wird daraufhin versucht eine Instanz dieser Klasse erstellt.</p>
+    <pre>Route::add('/', 'HomepageController', 'get');</pre>
+
+    <p>Am Ende aller definierten Routen, muss der Router nur noch gestartet werden.</p>
+    <pre>Route::run();</pre>
+
+
+    <h2 id="base">Basis Route</h2>
+    <p>Falls sich dein Projekt nicht im Root Verzeichnis befindet, müsstest du jedes mal den Pfad dazu extra angeben.</p>
+    <pre>Route::add('/path/to/myproject/home', $function, 'get');
+Route::add('/path/to/myproject/user', $function, 'get');
+Route::add('/path/to/myproject/post/edit', $function, 'post');</pre>
+
+    <p>Um das zu Umgehen, gibt es die Basis Route.</p>
+    <pre>Route::base('/path/to/myproject');
+
+Route::add('/home', $function, 'get');
+Route::add('/user', $function, 'get');
+Route::add('post/edit', $function, 'post');</pre>
+
+    
+    <h2 id="error">Error Routen</h2>
+    <p>Du kannst auch Error Routen definieren um Errors nicht ins leere laufen zu lassen.</p>
+    <pre>Route::error(Route::PATH_NOT_FOUND, $function);
+Route::error(Route::METHOD_NOT_ALLOWED, $function);</pre>
+
+
+    <h2 id="parameter">Routen Parameter</h2>
+    <p>
+        Wenn du einen bestimmten Parameter (beispielsweise eine User ID) aus deiner URI benötigst, kannst du Ihn dir als Parameter in
+        der Routen Funktion übergeben lassen. Nutze dazu reguläre Ausdrücke zwischen zwei runden Klammern in deiner Route.
+    </p>
+    <pre>Route::add('/user/([0-9]*)', function($user_id) {
+    echo 'User ID ' . $user_id;
+}, 'get');
+
+Route::add('/user/(.*)/invite', function($username) {
+    echo 'Möchtest du ' . $username . ' einladen?';
+}, 'post');</pre>
+
+    <p>Du kannst dir auch mehrere Parameter übergeben lassen. Die Reihenfolge ist dann von der URI abzuleiten.</p>
+    <pre>Route::add('/user/([0-9]*)/post/([0-9]*)', function($user_id, $post_id) {
+    echo 'Post ' . $post_id . ' von User ' . $user_id;
+});</pre>
+
+
+    <h2 id="auth">Auth Routen</h2>
+    <p>
+        Um Routen hinter einer Gewissen Auth Challenge zu verstecken, muss die Auth Erweiterung Aktiviert werden und eine Auth Challenge erstellt werden.
+        Wenn die Challenge <code>true</code> zurückgibt, gillt die Challenge als bestanden.
+    </p>
+    <pre>use Moritz\Route\Auth;
+
+Auth::make('login', function($logged_in) {
+    if ($logged_in) {
+        return true;
+    } else {
+        return false;
+    }
+});</pre>
+    <p>
+        Im Anschluss kann diese Challenge bei einer Route angehangen werden. Wenn die Challenge-Funktion Parameter benötigt, können diese
+        in einem Array mitgegeben werden.
+    </p>
+    <pre>Route::add('/admin', $myFunction)->auth('login', [$logged_in])</pre>
+
+
+    <h2 id="methods">Alle Methoden</h2>
+    <table>
+        <thead>
+            <th>Methode</th>
+            <th>Parameter</th>
+            <th>Rückgabewert</th>
+            <th>Kurze Beschreibung</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Route::add($uri, $function[, $method])</code></td>
+                <td>
+                    <code>uri: string</code><br>
+                    <code>function: [string|function]</code><br>
+                    <code>method: string['get'|'post']</code>
+                </td>
+                <td>void</td>
+                <td>Route hinzufügen</td>
+            </tr>
+
+            <tr>
+                <td><code>Route::error($code, $function)</code></td>
+                <td>
+                    <code>code: int</code><br>
+                    <code>function: [string|function]</code>
+                </td>
+                <td>void</td>
+                <td>Error Route hinzufügen</td>
+            </tr>
+
+            <tr>
+                <td><code>Route::base($uri)</code></td>
+                <td>
+                    <code>uri: string</code>
+                </td>
+                <td>void</td>
+                <td>Basis Route hinzufügen</td>
+            </tr>
+
+            <tr>
+                <td><code>Route::run()</code></td>
+                <td>
+                    
+                </td>
+                <td>void</td>
+                <td>Router starten</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
