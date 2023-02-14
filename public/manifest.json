@@ -1,11 +1,11 @@
 {
-    "name": "Wiki",
-    "short_name": "Wiki",
+    "name": "Miniwiki",
+    "short_name": "Miniwiki",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#475569",
     "theme_color": "#475569",
-    "description": "MK Wiki",
+    "description": "Miniwiki",
     "icons": [
         {
             "src": "img/favicon.png",
