@@ -1,4 +1,8 @@
 
 config/auth.php
 config/main.php
-content/
+
+content/wikis/*
+!content/wikis/place-wiki-files-here
+content/images/*
+!content/images/place-image-files-here
