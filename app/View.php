@@ -8,10 +8,10 @@ class View {
         $this->scanner = new DirectoryScanner;
     }
 
-    public function render(String $__path, Array $data = array()): View {
+    public function render(String $__path, Array $__data = array()): View {
 
-        foreach ($data as $key => $value) {
-            $$key = $value;
+        foreach ($__data as $__key => $__value) {
+            $$__key = $__value;
         }
 
         require VIEW_PATH . $__path . '.php';
