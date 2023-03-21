@@ -1,5 +1,6 @@
 <?php
 
+use Controllers\ImageController;
 use Controllers\LoginController;
 use Controllers\WikiController;
 use Moritz\Route\Auth;
@@ -188,10 +189,19 @@ Route::add('/directories/delete', function() {
 
 
 Route::add('/images', function(){
-    $c = new WikiController;
-    $c->comingSoon();
+    $c = new ImageController;
+    $c->interface();
 })->auth('login');
 
+Route::add('/image', function(){
+    $c = new ImageController;
+    $c->show();
+})->auth('login');
+
+Route::add('/images/scan', function(){
+    $c = new ImageController;
+    $c->scanImages();
+}, 'post')->auth('login');
 
 
 /**

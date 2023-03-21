@@ -6,7 +6,7 @@
             <hr>
         <?php endif; ?>
 
-        <div class="dir-name"><?= $root ?></div>
+        <div class="dir-name">Loaction: <?= $root ?></div>
         <hr>
 
         <?php if ($prev != ''): ?>
@@ -58,7 +58,7 @@ async function deleteDir(id) {
                     .then(() => {
                         document.getElementById(`delete-dir-${id}`).submit()
                     })
-            }, 305)
+            }, 400)
         })
 }
 

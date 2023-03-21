@@ -1,9 +1,48 @@
+:root {
+
+    /* Color Theme */
+
+    --background-color: #ECFDF5;
+    --plain-background: #FFFFFF;
+    --background-color-dark: #D1FAE5;
+    --font-color: #1E293B;
+    --font-color-disabled: #94A3B8;
+
+    --primary-color: #10B981;
+    --primary-color-light: #34D399;
+    --primary-color-dark: #059669;
+    --font-color-on-primary: #1E293B;
+
+    --primary-color-disabled: #A7F3D0;
+    --font-color-on-primary-disabled: #94A3B8;
+
+    --secondary-color: #1E293B;
+    --secondary-color-light: #334155;
+    --secondary-color-lighter: #475569;
+    --font-color-on-secondary: #BFCFEC;
+    --font-color-on-secondary-dark: #94A3B8;
+
+    --danger-color: #EF4444;
+    --danger-color-light: #F87171;
+    --font-color-on-danger: #1E293B;
+
+    --light-shadow: #707070;
+    --dark-shadow: #202020;
+
+    --font-color-error: #DC2626;
+    
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
     position: relative;
-    background-color: #ECFDF5;
+    background-color: var(--background-color);
 }
 
 main.main-container {
@@ -14,12 +53,11 @@ main.main-container {
     margin-left: 25%;
     position: relative;
     z-index: 0;
-    color: #1E293B;
+    color: var(--font-color);
 }
 
 nav.nav-container {
-    background-color: #1E293B;
-    color: #bfcfec;
+    background-color: var(--secondary-color);
     position: fixed;
     top: 0;
     left: 0;
@@ -72,15 +110,15 @@ nav.nav-container {
         position: fixed;
         right: 20px;
         bottom: 20px;
-        background-color: #1E293B;
-        color: #bfcfec;
+        background-color: var(--secondary-color);
+        color: var(--font-color-on-secondary);
         height: 50px;
         width: 50px;
         border-radius: 40px;
         align-items: center;
         justify-content: center;
         font-size: 1.5rem;
-        box-shadow: 0px 5px 10px -5px #707070;
+        box-shadow: 0px 5px 10px -5px var(--light-shadow);
         cursor: pointer;
         z-index: 1;
     }
@@ -90,15 +128,15 @@ nav.nav-container {
         position: fixed;
         right: 20px;
         bottom: 20px;
-        background-color: #10B981;
-        color: #1E293B;
+        background-color: var(--primary-color);
+        color: var(--font-color-on-primary);
         height: 50px;
         width: 50px;
         border-radius: 40px;
         align-items: center;
         justify-content: center;
         font-size: 1.5rem;
-        box-shadow: 0px 5px 10px -5px #202020;
+        box-shadow: 0px 5px 10px -5px var(--dark-shadow);
         cursor: pointer;
         z-index: 4;
         transition: transform .3s ease, opacity .3s ease;
@@ -121,8 +159,8 @@ nav.nav-container .nav-links {
 }
 
 nav.nav-container .nav-links hr {
-    border: 1px solid #bfcfec;
-    background-color: #bfcfec;
+    border: 1px solid var(--font-color-on-secondary);
+    background-color: var(--font-color-on-secondary);
     border-radius: 2px;
 }
 
@@ -131,7 +169,7 @@ nav.nav-container .nav-links .file {
     justify-content: flex-start;
     align-items: center;
     text-decoration: none;
-    color: #bfcfec;
+    color: var(--font-color-on-secondary);
     cursor: pointer;
     font-size: 1.1rem;
     padding: 10px;
@@ -141,18 +179,18 @@ nav.nav-container .nav-links .file {
 }
 
 nav.nav-container .nav-links .file:hover {
-    background-color: #334155;
+    background-color: var(--secondary-color-light);
 }
 
 nav.nav-container .nav-links .file.current {
-    background-color: #334155;
+    background-color: var(--secondary-color-light);
 }
 
 nav.nav-container .nav-links .folder > .folder-toggle {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: #94A3B8;
+    color: var(--font-color-on-secondary-dark);
     cursor: pointer;
     font-size: 1.1rem;
     padding: 10px;
@@ -162,11 +200,11 @@ nav.nav-container .nav-links .folder > .folder-toggle {
 }
 
 nav.nav-container .nav-links .folder > .folder-toggle:hover {
-    background-color: #334155;
+    background-color: var(--secondary-color-light);
 }
 
 nav.nav-container .nav-links .folder > .folder-toggle.current {
-    background-color: #334155;
+    background-color: var(--secondary-color-light);
 }
 
 nav.nav-container .nav-links .folder > .folder-toggle > .folder-open {
@@ -185,7 +223,7 @@ nav.nav-container .nav-links .folder > .folder-items {
     display: none;
     padding-left: 4px;
     margin-left: 2px;
-    border-left: 2px solid #64748b;
+    border-left: 2px solid var(--font-color-on-secondary-dark);
     overflow: hidden;
     transition: max-height .3s ease;
 }
@@ -213,8 +251,8 @@ nav.nav-container .nav-links .folder.active > .folder-items {
     margin: 30px;
     width: 300px;
     padding: 20px;
-    background-color: #10B981;
-    color: #1E293B;
+    background-color: var(--primary-color);
+    color: var(--font-color-on-primary);
     border: none;
     border-radius: 7px;
     cursor: pointer;
@@ -224,12 +262,12 @@ nav.nav-container .nav-links .folder.active > .folder-items {
     text-decoration: none;
     display: block;
     transition: transform .2s ease, background-color .2s ease;
-    box-shadow: 0px 5px 10px -5px #707070;
+    box-shadow: 0px 5px 10px -5px var(--light-shadow);
 }
 
 .home .buttons .button:hover {
     transform: translateY(-2px);
-    background-color: #34D399;
+    background-color: var(--primary-color-light);
 }
 
 .home .buttons .button:active {
@@ -263,7 +301,7 @@ nav.nav-container .nav-links .folder.active > .folder-items {
 
 .topnav,
 .toolbar {
-    background-color: #475569;
+    background-color: var(--secondary-color-lighter);
     position: sticky;
     top: 0;
     box-sizing: border-box;
@@ -271,12 +309,12 @@ nav.nav-container .nav-links .folder.active > .folder-items {
     width: 75%;
     margin-left: 25%;
     z-index: 1;
-    box-shadow: 0px 5px 10px -5px #707070;
+    box-shadow: 0px 5px 10px -5px var(--light-shadow);
     display: grid;
     gap: 15px;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    color: #BFCFEC;
+    color: var(--font-color-on-secondary);
 }
 
 .toolbar.grid-1 {
@@ -298,7 +336,7 @@ nav.nav-container .nav-links .folder.active > .folder-items {
 
 .topnav .topnav-name a {
     text-decoration: none;
-    color: #BFCFEC;
+    color: var(--font-color-on-secondary);
 }
 
 .topnav .topnav-nav {
@@ -310,8 +348,8 @@ nav.nav-container .nav-links .folder.active > .folder-items {
 .topnav .topnav-nav a.button {
     display: block;
     margin-left: 20px;
-    background-color: #10B981;
-    color: #1E293B;
+    background-color: var(--primary-color);
+    color: var(--font-color-on-primary);
     text-decoration: none;
     font-size: 1.1rem;
     padding: 7px;
@@ -322,12 +360,12 @@ nav.nav-container .nav-links .folder.active > .folder-items {
 }
 
 .topnav .topnav-nav a.button:hover {
-    background-color: #34D399;
+    background-color: var(--primary-color-light);
 }
 
 .toolbar a {
     text-decoration: none;
-    color: #BFCFEC;
+    color: var(--font-color-on-secondary);
 }
 
 .toolbar .toolbar-item {
@@ -350,12 +388,43 @@ main.wiki-entry {
     width: 75%;
     margin-left: 25%;
     padding: 15px 30px;
-    color: #1E293B;
+    color: var(--font-color);
     word-wrap: break-word;
 }
 
+main.wiki-entry h1,
+main.wiki-entry h2,
+main.wiki-entry h3,
+main.wiki-entry h4,
+main.wiki-entry h5,
+main.wiki-entry h6 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+main.wiki-entry h1,
+main.wiki-entry h2 {
+    border-bottom: 3px solid var(--font-color);
+}
+
+main.wiki-entry h1::before,
+main.wiki-entry h2::before,
+main.wiki-entry h3::before,
+main.wiki-entry h4::before,
+main.wiki-entry h5::before,
+main.wiki-entry h6::before { 
+    display: block; 
+    content: " "; 
+    margin-top: -80px; 
+    height: 80px; 
+    visibility: hidden; 
+    pointer-events: none;
+}
+
+
+
 main.wiki-entry table {
-    border: 3px solid #1E293B;
+    border: 3px solid var(--font-color);
     max-width: 100%;
     border-collapse: collapse;
     margin: 10px 0;
@@ -366,12 +435,12 @@ main.wiki-entry table {
 
 main.wiki-entry table td,
 main.wiki-entry table th {
-    border: 1px solid #1E293B;
+    border: 1px solid var(--font-color);
     padding: 5px 4px;
 }
 
 main.wiki-entry table thead {
-    border-bottom: 3px solid #1E293B;
+    border-bottom: 3px solid var(--font-color);
 }
 
 main.wiki-entry table thead th {
@@ -380,7 +449,7 @@ main.wiki-entry table thead th {
 
 main.wiki-entry table tfoot {
     font-weight: bold;
-    border-top: 3px solid #1E293B;
+    border-top: 3px solid var(--font-color);
 }
 
 main.wiki-entry img {
@@ -388,39 +457,40 @@ main.wiki-entry img {
 }
 
 main.wiki-entry blockquote {
-    border-left: 6px solid #10B981;
+    border-left: 6px solid var(--primary-color);
     margin: 10px 0;
     padding: 5px 15px;
-    background-color: #D1FAE5;
+    background-color: var(--background-color-dark);
+    color: var(--font-color-on-primary)
 }
 
 main.wiki-entry hr {
-    border: solid 1px #1E293B;
-    background-color: #1E293B;
+    border: solid 1px var(--font-color-disabled);
+    background-color: var(--font-color-disabled);
     border-radius: 2px;
 }
 
 main.wiki-entry code {
-    background-color: white;
+    background-color: var(--plain-background);
     padding: 0px !important;
 }
 
 main.wiki-entry pre {
-    border-left: 6px solid #10B981;
+    border-left: 6px solid var(--primary-color);
     margin: 10px 0;
     padding: 10px 15px;
-    background-color: white;
+    background-color: var(--plain-background);
     max-width: 100%;
     overflow: auto;
 }
 
 main.wiki-entry a {
-    color: #059669;
+    color: var(--primary-color-dark);
 }
 
 main.wiki-entry .parse-time {
     font-size: .8rem;
-    color: #94a3b8;
+    color: var(--font-color-disabled);
 }
 
 @media screen and (max-width: 1024px) {
@@ -496,7 +566,7 @@ main.wiki-entry .parse-time {
 main.container {
     margin-left: 25%;
     padding: 15px;
-    color: #1E293B;
+    color: var(--font-color);
 }
 
 main.container.blurry-background {
@@ -527,9 +597,9 @@ main.container.blurry-background {
 .manage .errorstring,
 .directories .errorstring  {
     font-size: 1.2rem;
-    color: #dc2626;
+    color: var(--font-color-error);
     padding: 15px;
-    border: 2px solid #dc2626;
+    border: 2px solid var(--font-color-error);
     border-radius: 7px;
 }
 
@@ -558,21 +628,20 @@ main.container.blurry-background {
 
 .create .form .form-input .placeholder.error,
 .manage .form .form-input .placeholder.error {
-    color: #dc2626;
+    color: var(--font-color-error);
 }
 
 .create .form .form-input .input,
 .manage .form .form-input .input {
     box-sizing: border-box;
-    border: solid 1px #1E293B;
-    color: #1E293B;
+    border: solid 1px var(--font-color);
+    color: var(--font-color);
     border-radius: 7px;
     padding: 10px;
     font-size: 1rem;
     width: 100%;
     font-family: 'Montserrat', sans-serif;
 }
-
 
 .manage .form .form-buttons {
     margin-top: 30px;
@@ -612,11 +681,12 @@ main.container.blurry-background {
 }
 
 .create .form .form-button .button,
-.manage .form .form-button .button {
+.manage .form .form-button .button,
+.images .load-more-button .button {
     width: 300px;
     padding: 20px;
-    background-color: #a7f3d0;
-    color: #94a3b8;
+    background-color:var(--primary-color-disabled);
+    color: var(--font-color-on-primary-disabled);
     border: none;
     border-radius: 7px;
     cursor: pointer;
@@ -629,28 +699,32 @@ main.container.blurry-background {
 }
 
 .create .form .form-button .button.valid,
-.manage .form .form-button .button.valid {
-    background-color: #10B981;
-    box-shadow: 0px 5px 10px -5px #707070;
-    color: #1E293B;
+.manage .form .form-button .button.valid,
+.images .load-more-button .button.valid {
+    background-color: var(--primary-color);
+    box-shadow: 0px 5px 10px -5px var(--light-shadow);
+    color: var(--font-color-on-primary);
 }
 
 .create .form .form-button .button.danger {
-    background-color: #EF4444;
+    background-color: var(--danger-color);
+    color: var(--font-color-on-danger);
 }
 
 .create .form .form-button .button.valid:hover,
-.manage .form .form-button .button.valid:hover {
+.manage .form .form-button .button.valid:hover,
+.images .load-more-button .button.valid:hover {
     transform: translateY(-2px);
-    background-color: #34D399;
+    background-color: var(--primary-color-light);
 }
 
 .create .form .form-button .button.danger:hover {
-    background-color: #F87171;
+    background-color: var(--danger-color-light);
 }
 
 .create .form .form-button .button.valid:active,
-.manage .form .form-button .button.valid:active {
+.manage .form .form-button .button.valid:active,
+.images .load-more-button .button.valid:active {
     transform: translateY(3px);
 }
 
@@ -671,7 +745,8 @@ main.container.blurry-background {
     }
 
     .create .form .form-button .button,
-    .manage .form .form-button .button {
+    .manage .form .form-button .button,
+    .images .load-more-button .button {
         width: 100%;
     }
 }
@@ -686,14 +761,14 @@ main.container.blurry-background {
 
 .directories hr {
     width: 100%;
-    border: 1px solid #1E293B;
-    background-color: #1E293B;
+    border: 1px solid var(--font-color);
+    background-color: var(--font-color);
     border-radius: 2px;
 }
 
 .directories .dir-name {
     font-size: 1.2rem;
-    color: #1E293B;
+    color: var(--font-color);
     padding: 15px;
 }
 
@@ -709,24 +784,25 @@ main.container.blurry-background {
     grid-template-columns: 1fr 50px;
 }
 
+
 .directories a {
     display: flex;
     align-items: center;
     padding: 15px;
     width: 100%;
     text-decoration: none;
-    background-color: #10B981;
+    background-color: var(--primary-color);
     box-sizing: border-box;
-    color: #1E293B;
+    color: var(--font-color-on-primary);
     border-radius: 7px;
-    box-shadow: 0 3px 7px -3px #707070;
+    box-shadow: 0 3px 7px -3px var(--light-shadow);
     height: 100%;
     transition: transform .2s ease, background-color .2s ease;
 }
 
 .directories a:hover {
     transform: translateY(-2px);
-    background-color: #34D399;
+    background-color: var(--primary-color-light);
 }
 
 .directories a:active {
@@ -740,12 +816,85 @@ main.container.blurry-background {
 
 .directories .dir a.danger,
 .directories .file a.danger {
-    background-color: #EF4444;
+    background-color: var(--danger-color);
+    color: var(--font-color-on-danger);
 }
 
 .directories a.danger:hover {
-    background-color: #F87171;
+    background-color: var(--danger-color-light);
 }
+
+.images .searchbar {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--plain-background);
+    box-sizing: border-box;
+    border: solid 1px var(--font-color);
+    color: var(--font-color);
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.images .searchbar .searchbar-icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.images .searchbar .searchbar-input {
+    border: none;
+    background: none;
+    outline: none;
+    box-sizing: border-box;
+    color: var(--font-color);
+    font-size: 1rem;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.images .image-grid {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 30px;
+    justify-content: center;
+}
+
+.images .image-grid .image {
+    background-color: var(--primary-color);
+    height: 250px;
+    border-radius: 14px;
+    box-shadow: 0px 5px 10px -5px var(--light-shadow);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.images .image-grid .image.upload .upload-icon {
+    font-size: 3rem;
+}
+
+.images .image-grid .image .image-source > img {
+    box-sizing: border-box;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+}
+
+.images .load-more-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .grid-center {
     display: grid;

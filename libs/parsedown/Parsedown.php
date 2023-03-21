@@ -526,6 +526,9 @@ class Parsedown
                     'name' => 'h' . min(6, $level),
                     'text' => $text,
                     'handler' => 'line',
+                    'attributes' => array(
+                        'id' => 'text-header-' . $this->autoIncrementId(),
+                    ),
                 ),
             );
 
@@ -1709,4 +1712,15 @@ class Parsedown
                    'var', 'span',
                    'wbr', 'time',
     );
+
+    #
+    # Auto Increment Id Plugin
+    #
+
+    protected $autoIncrement = 0;
+
+    protected function autoIncrementId() {
+        $this->autoIncrement++;
+        return $this->autoIncrement;
+    }
 }

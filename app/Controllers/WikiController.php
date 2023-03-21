@@ -8,6 +8,7 @@ use Exception;
 use Models\Filesystem;
 use Models\Wiki;
 use Parsedown;
+use Parser\MarkdownContents;
 use Profiler\Profiler;
 
 class WikiController extends BaseController {
@@ -41,6 +42,7 @@ class WikiController extends BaseController {
 
         $wiki = new Wiki;
         $profiler = new Profiler;
+        //$contents = new MarkdownContents;
 
         try {
             $text = $wiki->getWikiEntry('/' . $path);
@@ -53,6 +55,7 @@ class WikiController extends BaseController {
         }
 
         $profiler->rec('parse');
+        //$contents = $contents->text($text);
         $text = $this->parsedown->text($text);
         $profiler->stop('parse');
 
@@ -328,7 +331,7 @@ class WikiController extends BaseController {
         $filesystem = new Filesystem(WIKIS_PATH);
 
         try {
-            $filesystem->createDir($dir . $dirname . '/');
+            $filesystem->createDir($dir . $dirname . '/', true);
 
             header('Location: ' . ABSURL . 'directories?dir=' . rtrim($dir, '/'));
         } catch (Exception $e) {

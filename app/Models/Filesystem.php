@@ -96,6 +96,42 @@ class Filesystem extends BaseModel {
     }
 
     /**
+     * returns the size of the file in bytes
+     *
+     * @param string $filepath
+     * @return integer
+     * 
+     * @throws Exception
+     */
+    public function getFilesize(string $filepath): int {
+
+        if ($this->fileExists($filepath)) {
+            return filesize($this->root . $filepath);
+        } else {
+            throw new Exception('could not find a file in the given path');
+        }
+
+    }
+
+    /**
+     * returns the mime type of the file as string
+     *
+     * @param string $filepath
+     * @return string
+     * 
+     * @throws Exception
+     */
+    public function getMimeType(string $filepath): string {
+
+        if ($this->fileExists($filepath)) {
+            return mime_content_type($this->root . $filepath);
+        } else {
+            throw new Exception('could not find a file in the given path');
+        }
+
+    }
+
+    /**
      * Deletes a given File
      *
      * @param string $filepath the path of the file

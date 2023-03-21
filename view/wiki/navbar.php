@@ -8,7 +8,7 @@
             <div class="mr-10"><i class="fas fa-toolbox"></i></div>
             <div>Directory Manager</div>
         </a>
-        <a href="<?= ABSURL ?>images" class="file">
+        <a href="<?= ABSURL ?>images" class="file<?= $current == 'image-manager' ? ' current' : '' ?>">
             <div class="mr-10"><i class="fas fa-images"></i></div>
             <div>Image Manager</div>
         </a>
