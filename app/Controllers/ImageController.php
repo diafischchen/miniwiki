@@ -61,7 +61,8 @@ class ImageController extends BaseController {
         }
 
         // return all filenames as Array in JSON Format
-        api_output($output_array);
+        $api = new APIController;
+        $api->outputJSON($output_array);
 
     }
 

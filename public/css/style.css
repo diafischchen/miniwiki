@@ -689,7 +689,7 @@ main.container.blurry-background {
     color: var(--font-color-on-primary-disabled);
     border: none;
     border-radius: 7px;
-    cursor: pointer;
+    cursor: default;
     outline: none;
     font-size: 1.2rem;
     font-family: 'Montserrat', sans-serif;
@@ -704,6 +704,7 @@ main.container.blurry-background {
     background-color: var(--primary-color);
     box-shadow: 0px 5px 10px -5px var(--light-shadow);
     color: var(--font-color-on-primary);
+    cursor: pointer;
 }
 
 .create .form .form-button .button.danger {
