@@ -465,9 +465,9 @@ main.wiki-entry blockquote {
 }
 
 main.wiki-entry hr {
-    border: solid 1px var(--font-color-disabled);
-    background-color: var(--font-color-disabled);
-    border-radius: 2px;
+    border: solid 1px var(--font-color);
+    background-color: var(--font-color);
+    border-radius: 0px;
 }
 
 main.wiki-entry code {
