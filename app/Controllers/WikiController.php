@@ -64,6 +64,8 @@ class WikiController extends BaseController {
         // get Wiki Name
         $title = $wiki->sepFilename($path);
 
+        //$text = $contents . $text;
+
         $this->view
             ->render('/wiki/header', ['title' => $title])
             ->render('/wiki/topnav', ['path' => $path])
