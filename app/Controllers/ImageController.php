@@ -18,6 +18,7 @@ class ImageController extends BaseController {
             ->render('/wiki/header')
             ->render('/wiki/toolbar', ['title' => 'Image Manager', 'back' => ABSURL . 'wiki'])
             ->render('/wiki/images/overview')
+            ->render('/wiki/images/upload-modal')
             ->renderWikiNav('image-manager')
             ->render('/wiki/footer');
 

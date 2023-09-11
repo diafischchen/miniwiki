@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="<?= ABSURL ?>fontawesome/css/all.min.css">
     <script src="<?= ABSURL ?>highlight/highlight.min.js"></script>
     <script src="<?= ABSURL ?>js/alert.js"></script>
+    <script defer src="<?= ABSURL ?>js/modal.js"></script>
     <script defer>hljs.highlightAll();</script>
 </head>
 <body>

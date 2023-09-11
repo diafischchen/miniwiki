@@ -6,6 +6,7 @@ const precache = [
     '/css/login.css',
     '/css/style.css',
     '/js/alert.js',
+    '/js/modal.js',
     '/favicon.ico',
     '/manifest.json',
 ]

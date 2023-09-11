@@ -13,7 +13,7 @@
 
     <div class="image-grid">
 
-        <div class="image upload">
+        <div class="image upload modal-opener" data-modal="uploadModal">
             <div class="upload-icon">
                 <i class="fa-solid fa-upload"></i>
             </div>
