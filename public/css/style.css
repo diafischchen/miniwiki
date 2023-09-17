@@ -896,6 +896,131 @@ main.container.blurry-background {
     justify-content: center;
 }
 
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal.animate {
+    opacity: 0;
+}
+
+.modal.animate .modal-box {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal .modal-box {
+    background-color: #ECFDF5;
+    border-radius: .5rem;
+    padding: 0 0.4rem;
+    position: relative;
+    width: 800px;
+    max-width: 95%;
+    box-sizing: border-box;
+    max-height: 95%;
+    overflow: auto;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    color: var(--font-color);
+}
+
+.modal .modal-box > div {
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.modal .modal-box .modal-header {
+    padding-top: 1.4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-bottom: 1px solid var(--font-color);
+    background-color: #ECFDF5;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.modal .modal-box .modal-footer {
+    border-top: 1px solid var(--font-color);
+    background-color: #ECFDF5;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+}
+
+    /*
+
+    .modal-box {
+        background-color: var(--gray-100);
+        border-radius: .5rem;
+        padding: 0 0.4rem;
+        position: relative;
+        width: 800px;
+        max-width: 95%;
+        box-sizing: border-box;
+        max-height: 95%;
+        overflow: auto;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        border: 3px solid var(--gray-300);
+
+        >div {
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        .modal-header {
+            padding-top: 1.4rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-bottom: 1px solid var(--gray-300);
+            background-color: var(--gray-100);
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .modal-footer {
+            border-top: 1px solid var(--gray-300);
+            background-color: var(--gray-100);
+            width: 100%;
+            position: sticky;
+            bottom: 0;
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 4px;
+            right: -2px;
+            background: none;
+            color: var(--gray-900);
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color .2s ease;
+        }
+
+        .modal-close-button:hover {
+            background-color: var(--gray-200);
+        }
+
+        .modal-close-button:active {
+            background-color: var(--gray-300);
+        }
+    }
+}*/
 
 .grid-center {
     display: grid;
