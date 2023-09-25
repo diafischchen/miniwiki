@@ -916,7 +916,7 @@ main.container.blurry-background {
 
 .modal.animate .modal-box {
     opacity: 0;
-    transform: translateY(-50px);
+    transform: scale(.8);
 }
 
 .modal.active {
@@ -959,6 +959,28 @@ main.container.blurry-background {
     width: 100%;
     position: sticky;
     bottom: 0;
+}
+
+.modal .modal-box .modal-close-button {
+    position: absolute;
+    top: 4px;
+    right: -2px;
+    background: none;
+    color: var(--font-color);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color .2s ease;
+    font-size: 1.5rem;
+    padding: 2px 10px;
+}
+
+.modal .modal-box .modal-close-button:hover {
+    background-color: var(--primary-color-light);
+}
+
+.modal .modal-box .modal-close-button:active {
+    background-color: var(--primary-color);
 }
 
     /*
