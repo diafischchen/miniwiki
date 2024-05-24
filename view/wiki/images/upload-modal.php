@@ -35,15 +35,46 @@ dropzone.addEventListener('click', (e) => {
     fileInput.click()
 })
 
+dropzone.addEventListener('dragenter', (e) => {
+    e.stopPropagation()
+    e.preventDefault()
+})
+
 dropzone.addEventListener('dragover', (e) => {
+    e.stopPropagation()
     e.preventDefault()
 })
 
 dropzone.addEventListener('drop', (e) => {
+    e.stopPropagation()
     e.preventDefault()
-    
-    
-    console.log(e.dataTransfer.items)
+
+    const dt = e.dataTransfer
+    const files = dt.files
+
+    handleFiles(files)
 })
+
+function handleFiles(files) {
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+
+    if (!file.type.startsWith("image/")) {
+      continue;
+    }
+
+    const img = document.createElement("img");
+    img.classList.add("obj");
+    img.file = file;
+    dropzone.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
 
 </script>
