@@ -56,24 +56,24 @@ dropzone.addEventListener('drop', (e) => {
 })
 
 function handleFiles(files) {
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
 
-    if (!file.type.startsWith("image/")) {
-      continue;
+        if (!file.type.startsWith("image/")) {
+            continue;
+        }
+
+        const img = document.createElement("img");
+        img.classList.add("obj");
+        img.file = file;
+        dropzone.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
     }
-
-    const img = document.createElement("img");
-    img.classList.add("obj");
-    img.file = file;
-    dropzone.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
 }
 
 
