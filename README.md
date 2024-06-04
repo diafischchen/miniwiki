@@ -7,7 +7,6 @@ An Open Source Wiki Solution for your Webserver
 - no Database needed
 - PWA Support
 - mobile responsive, modern Design
-- Download Wiki Files
 
 
 ## Docker Setup
