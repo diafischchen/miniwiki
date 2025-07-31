@@ -14,7 +14,7 @@ class LoginController extends BaseController {
     public function interface() {
         $auth = new AuthToken();
 
-        if ($auth->isAuthTokenValid(AUTH_PASSWORD)) {
+        if ($auth->isAuthTokenValid(AUTH_USERNAME, AUTH_PASSWORD)) {
 
             $this->writeSessionAndRedirect();
 
@@ -32,7 +32,7 @@ class LoginController extends BaseController {
 
                 if (isset($_POST['keep_logged_in'])) {
                     $auth = new AuthToken();
-                    $auth->generateAuthToken($password)->setAuthToken();
+                    $auth->generateAuthToken($username, $password)->setAuthToken();
                 }
 
                 $this->writeSessionAndRedirect();

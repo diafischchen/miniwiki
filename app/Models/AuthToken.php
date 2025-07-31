@@ -22,22 +22,25 @@ class AuthToken extends BaseModel {
     }
 
     /**
-     * check if the current auth token is a valid token for the given password
+     * check if the current auth token is a valid token for the given username and password
      *
+     * @param string $username
+     * @param string $password
      * @return boolean
      */
-    public function isAuthTokenValid(string $password): bool {
-        return $this->verifyToken($this->token, $password);
+    public function isAuthTokenValid(string $username, string $password): bool {
+        return $this->verifyToken($this->token, $username, $password);
     }
 
     /**
-     * generate a new Auth Token from a given password hash
+     * generate a new Auth Token from a given username and password hash
      *
+     * @param string $username
      * @param string $password
      * @return AuthToken
      */
-    public function generateAuthToken(string $password): AuthToken {
-        $token = $this->encryptToken($password);
+    public function generateAuthToken(string $username, string $password): AuthToken {
+        $token = $this->encryptToken($username, $password);
         return new AuthToken($token);
     }
 
@@ -60,25 +63,31 @@ class AuthToken extends BaseModel {
     }
 
     /**
-     * Encrypt a Token
+     * Encrypt a Token using username and password
      *
-     * @param string $token the decrypted token
+     * @param string $username the username
+     * @param string $password the password
      * @return string
      */
-    private function encryptToken(string $token): string {
-        $token = password_hash($token, PASSWORD_DEFAULT);
+    private function encryptToken(string $username, string $password): string {
+        // Combine username and password with a separator to create unique token
+        $tokenData = $username . '|' . $password;
+        $token = password_hash($tokenData, PASSWORD_DEFAULT);
         return $token;
     }
 
     /**
-     * verify a Token
+     * verify a Token using username and password
      *
      * @param string $token the encrypted token
+     * @param string $username the username to match
      * @param string $password the password to match
      * @return boolean
      */
-    private function verifyToken(string $token, string $password): bool {
-        return password_verify($password, $token);
+    private function verifyToken(string $token, string $username, string $password): bool {
+        // Combine username and password with the same separator used during encryption
+        $tokenData = $username . '|' . $password;
+        return password_verify($tokenData, $token);
     }
 
 }
