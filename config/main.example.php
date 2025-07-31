@@ -15,6 +15,7 @@ const CONFIG_PATH = ABSPATH . '/config';
 const LIBS_PATH = ABSPATH . '/libs';
 const VIEW_PATH = ABSPATH . '/view';
 const WIKIS_PATH = ABSPATH . '/content/wikis';
+const IMAGES_PATH = ABSPATH . '/content/images';
 
 // Debug
 const DEBUG_MODE = false;

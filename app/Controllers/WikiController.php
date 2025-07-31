@@ -333,7 +333,11 @@ class WikiController extends BaseController {
         $filesystem = new Filesystem(WIKIS_PATH);
 
         try {
-            $filesystem->createDir($dir . $dirname . '/', true);
+            $success = $filesystem->createDir($dir . $dirname . '/', true);
+            
+            if (!$success) {
+                throw new Exception('could not create directory');
+            }
 
             header('Location: ' . ABSURL . 'directories?dir=' . rtrim($dir, '/'));
         } catch (Exception $e) {
