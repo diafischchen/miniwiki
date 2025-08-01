@@ -1126,6 +1126,24 @@ main.container.blurry-background {
     margin-left: 10px;
 }
 
+.modal .modal-footer-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.modal .modal-footer-buttons .modal-footer-button {
+    text-transform: uppercase;
+    color: #059669;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 35px;
+}
+
+.modal .modal-footer-buttons .modal-footer-button:first-child {
+    margin-left: 0;
+}
+
 .grid-center {
     display: grid;
     grid-template-columns: 1fr;

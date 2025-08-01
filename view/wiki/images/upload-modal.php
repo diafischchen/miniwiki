@@ -19,7 +19,10 @@
 
         </div>
         <div class="modal-footer">
-            <button class="button button-blue">upload</button>
+            <div class="modal-footer-buttons">
+                <div class="button modal-footer-button modal-closer">Cancel</div>
+                <div class="button modal-footer-button">Upload</div>
+            </div>
         </div>
     </div>
 </div>
@@ -91,6 +94,7 @@ function handleFiles(files) {
         
         // Create preview element in the UI
         createPreview(file);
+        console.log(file)
     }
 }
 
@@ -120,6 +124,13 @@ function createPreview(file) {
 
     // Insert the preview HTML at the end of the preview container
     previewContainer.insertAdjacentHTML('beforeend', previewHTML);
+
+    // Add event listener to the remove button
+    const removeButton = previewContainer.lastElementChild.querySelector('.dropzone-preview-remove');
+    removeButton.addEventListener('click', () => {
+        // Remove the preview element from the DOM
+        previewContainer.removeChild(removeButton.closest('.dropzone-preview'));
+    });
 }
 
 
