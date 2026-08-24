@@ -203,6 +203,11 @@ Route::add('/images/scan', function(){
     $c->scanImages();
 }, 'post')->auth('login');
 
+Route::add('/images/upload', function(){
+    $c = new ImageController;
+    $c->upload();
+}, 'post')->auth('login');
+
 
 /**
  * ------------------------------

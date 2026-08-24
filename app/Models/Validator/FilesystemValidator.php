@@ -44,4 +44,13 @@ class FilesystemValidator {
         }
     }
 
+    public function validateImageFileName(string $file): bool {
+        $regex = '/^[a-zA-Z0-9._-]+[.]{1}(jpe?g|png|gif|webp|svg|bmp)$/i';
+        if (preg_match($regex, $file)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

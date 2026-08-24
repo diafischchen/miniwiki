@@ -78,6 +78,36 @@ class Filesystem extends BaseModel {
     }
 
     /**
+     * Saves an uploaded Image File in a given Directory
+     *
+     * @param string $file the filename
+     * @param string $tmpPath the temporary path of the uploaded file (from $_FILES)
+     * @param string $dir the directory path
+     * @param bool $overwrite if this is set to false this method will not overwrite existing files
+     * @return boolean success
+     * 
+     * @throws Exception
+     */
+    public function writeUploadedImage(string $file, string $tmpPath, string $dir = '/', bool $overwrite = true): bool {
+        $fileValid = $this->validator->validateImageFileName($file);
+        $dirValid = $this->validator->validateDirName($dir);
+
+        if (!$fileValid || !$dirValid) {
+            throw new Exception('filename or directory name is not valid');
+        }
+
+        if ($this->fileExists($dir . $file) && !$overwrite) {
+            throw new Exception('not allowed to overwrite existing file');
+        }
+
+        if (!is_uploaded_file($tmpPath)) {
+            throw new Exception('given path is not an uploaded file');
+        }
+
+        return move_uploaded_file($tmpPath, $this->root . $dir . $file);
+    }
+
+    /**
      * Reads the Content of a File
      *
      * @param string $filepath the path to the file
@@ -125,6 +155,24 @@ class Filesystem extends BaseModel {
 
         if ($this->fileExists($filepath)) {
             return mime_content_type($this->root . $filepath);
+        } else {
+            throw new Exception('could not find a file in the given path');
+        }
+
+    }
+
+    /**
+     * returns the last modified time of the file as unix timestamp
+     *
+     * @param string $filepath
+     * @return integer
+     * 
+     * @throws Exception
+     */
+    public function getModifiedTime(string $filepath): int {
+
+        if ($this->fileExists($filepath)) {
+            return filemtime($this->root . $filepath);
         } else {
             throw new Exception('could not find a file in the given path');
         }
