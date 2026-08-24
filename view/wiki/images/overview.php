@@ -28,6 +28,22 @@
     
 </main>
 
+<div class="modal" id="imageModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <p id="imageModalTitle"></p>
+            <button class="modal-close-button font-lg modal-closer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-content">
+
+            <div class="image-source">
+                <img id="imageModalImage" src="" />
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script src="<?= JQUERY_CDN ?>" integrity="<?= JQUERY_CDN_INTEGRITY ?>" crossorigin="anonymous"></script>
 <script>
 
@@ -44,7 +60,7 @@ function populateImages(dataArray) {
     for (let i = 0; totalImageLoadIndex < dataArray.length && i < maxImagesOnLoad; i++) {
 
         imageString = `
-        <div class="image">
+        <div class="image modal-opener" data-modal="imageModal" onclick="populateImageModal('${dataArray[totalImageLoadIndex]}')">
             <div class="image-source">
                 <img src="<?= ABSURL ?>image?src=${dataArray[totalImageLoadIndex]}" />
             </div>
@@ -106,6 +122,14 @@ function loadMoreButtonClick() {
 
 }
 
+function populateImageModal(imageName) {
+
+    const imageModalTitle = document.getElementById('imageModalTitle')
+    const imageModalImage = document.getElementById('imageModalImage')
+
+    imageModalTitle.textContent = imageName
+    imageModalImage.src = '<?= ABSURL ?>image?src=' + imageName
+}
 loadImages()
 
 </script>
